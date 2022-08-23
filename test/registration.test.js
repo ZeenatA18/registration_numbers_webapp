@@ -18,15 +18,15 @@ describe("Registration function", function () {
 
     })
 
-    it("Should check if registration number is duplicate", function () {
-        const register = registration()
+    // it("Should check if registration number is duplicate", function () {
+    //     const register = registration()
 
-        register.storedRegNums = ['fdfd']
+    //     register.storedRegNums = ['fdfd']
 
-        register.getRegistration('fdfd')
-        assert.equal(true, register.setRegistration());
+    //     // register.getRegistration('fdfd')
+    //     assert.equal( false, register.setRegistration('fdfd'));
 
-    })
+    // })
 
 })
 
@@ -43,6 +43,18 @@ describe("Error messages", function () {
         const register = registration()
 
         assert.equal("Enter a valid registration number", register.sumbitRegistration('231345'));
+
+    })
+
+    it("Should return error message if registration number is duplicate", function () {
+        const register = registration()
+
+        register.storedRegNums = ['fdfd']
+
+        // register.getRegistration('fdfd')
+        "Existing registration number"
+        assert.equal(false, register.duplicateReg('fdfd'));
+        
 
     })
 

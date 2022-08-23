@@ -54,7 +54,6 @@ module.exports = function Registration(list) {
     function setRegistration(regNumbers) {
         if (duplicateReg(regNumbers) === false) {
             storedRegNums.push(regNumbers)
-            return true
         }
         else {
             return false;
