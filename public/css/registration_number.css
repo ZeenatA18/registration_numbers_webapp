@@ -82,6 +82,12 @@ li {
     padding-top: 6em;
 }
 
+.set{
+    font-size: medium;
+    background-color: red;
+    border-radius: 10px;
+}
+
 @media screen and (max-width: 800px) {
     
    .container .box{
