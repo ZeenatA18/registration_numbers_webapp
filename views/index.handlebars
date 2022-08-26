@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,36 +8,49 @@
     <title>Registration</title>
     <link rel="stylesheet" href="/css/registration_number.css">
 </head>
+
 <body>
     <div class="container">
 
         <div class="box">
 
-        <h1>Registration Number</h1>
+            <h1>Registration Number</h1>
 
-<form action="numberPlates" method="post">
+            <div class="errorMsg">{{messages.error}}</div>
 
-        <div class="enterReg">
-            <input size="30" type="text" name="regs" class="regEntered" value="" placeholder="Enter Registration Number">
-        <input class="addRegNumber" type="submit" value="Add">
+            <form action="numberPlates" method="post">
+
+                <div class="enterReg">
+                    <input size="30" type="text" name="regNo" class="regEntered" value=""
+                        placeholder="Enter Registration Number">
+                    <input class="addRegNumber" type="submit" value="Add">
+                </div>
+
+            </form>
+
+            <div class="reg">
+                <input type="radio" name="town" value="">Show all
+                <input type="radio" class="radio" name="town" value="CY">Bellville
+                <input type="radio" class="radio" name="town" value="CJ">Paarl
+                <input type="radio" class="radio" name="town" value="CA"> Cape Town
+            </div>
+
+            <div class="regNumbers">
+                {{#each regList}}
+
+                <li class="cy"> {{this.regno}}</li>
+
+                {{/each}}
+            </div>
+
+            
+                <div class="reset">
+                   <a href="/reset"></a> <button type="submit" value="RESET">RESET</button>  </a>
+                </div>
+          
+
         </div>
-
-</form>
-
-        <div class="reg">
-            <input type="radio" name="town" value="">Show all
-				<input type="radio" class="radio" name="town" value="CY">Bellville
-				<input type="radio" class="radio" name="town" value="CJ">Paarl
-				<input type="radio" class="radio" name="town" value="CA"> Cape Town
-        </div>
-
-        <div class="regNumbers">
-            {{#each register}}
-           CY 124-245
-            {{/each}}
-        </div>
-
-    </div>
     </div>
 </body>
+
 </html>

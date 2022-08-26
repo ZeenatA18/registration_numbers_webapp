@@ -1,5 +1,6 @@
 body{
-background-image: url('gray.jpeg');
+background-image: url('g.jpg');
+/* background-color: #000; */
 margin: 0;
 padding: 0;
 font-family: sans-serif;
@@ -14,7 +15,8 @@ font-family: sans-serif;
 }
 
 .container .box{
-    background-color: #000;
+    /* background-color: #000; */
+    background-image: url('gray.webp');
     position: relative;
     width: calc(800px - 30px);
     height: calc(400px - 30px);
@@ -26,27 +28,72 @@ font-family: sans-serif;
 
 h1{
     text-align: center;
-    color: white;
+    color: black;
 }
 
 .regEntered{
     text-align: center;
-    margin: 1em;
+    /* margin: 1em; */
 }
 
 .enterReg{
-    margin-top: 50px;
+    /* margin-top: 10px; */
     display: flex;
     justify-content: center;
 }
 
-.reg{
-    margin-top: 40px;
-    text-align: center;
-    color: white;
+.addRegNumber{
+    margin-left: 2em;
 }
 
-.regNumbers{
-    color: white;
+.reg{
+    margin-top: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+    color: black;
+}
+
+.cy{
+    color: black;
+    background: gray;
+    border-radius: 10rem;
+    /* width: 100px; */
+    /* text-align: center; */
+    /* justify-content: center; */
+    /* margin-bottom: 30px; */
+    margin-left: 12px;
+    padding: 5px;
+}
+
+li {
+    list-style: none;
+    display: inline-table;
+    /* margin-top: 5px; */
+}
+
+.errorMsg{
+    color: red;
+    text-align: center;
+    padding-bottom: 1em;
+}
+
+.reset{
+    text-align: center;
+    padding-top: 6em;
+}
+
+@media screen and (max-width: 800px) {
     
+   .container .box{
+    height: 500px;
+    width: 80%;
+    margin: 5em;
+    margin-top: 10em;
+   }
+
+   .reset{
+    text-align: center;
+    padding-top: 15em;
+}
+
 }

@@ -39,12 +39,12 @@ describe("Error messages", function () {
 
     })
 
- it("Should return error message if invalid registration number was entered", function () {
-        const register = registration()
+//  it("Should return error message if invalid registration number was entered", function () {
+//         const register = registration()
 
-        assert.equal("Enter a valid registration number", register.sumbitRegistration('231345'));
+//         assert.equal("Enter a valid registration number", register.sumbitRegistration('231345'));
 
-    })
+//     })
 
     it("Should return error message if registration number is duplicate", function () {
         const register = registration()

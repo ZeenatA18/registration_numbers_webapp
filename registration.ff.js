@@ -1,68 +1,57 @@
-module.exports = function Registration(list) {
+module.exports = function Registration(db) {
 
-    var storedRegNums = list || []
-    // var areaReg = ['CA', 'CY', 'CJ']
-    var empty = []
-
-    var letters = /[^\d]/gi;
+    let letters = /[^\d]/gi;
 
     // /[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}$/; 
 
     function sumbitRegistration(noReg) {
-        if(letters.test(noReg)){
+        if (letters.test(noReg)) {
             return noReg
-        } 
-        else{
-            return "Enter a valid registration number"
-        } 
-    }
-
-    function filterRegistration(areaReg){
-        return storedRegNums.filter(function(reg){
-            return reg.startsWith(areaReg)
-        });
-
-
-        // if(storedRegNums.filter(areaReg)){
-        //     return areaReg
-        // }; 
-
+        }
     }
 
     // function filterRegistration(areaReg) {
-
-    //     for (let i = 0; i storedRegNums.length; i++) {
-    //         if (storedRegNums[i] === areaReg) {
-    //             empty.push(storedRegNums[i])
-    //         }
-    //     }
+    //     return storedRegNums.filter(function (reg) {
+    //         return reg.startsWith(areaReg)
+    //     });
     // }
 
-    function errorMessages(noPlate) {
-        if (noPlate == "") {
+    async function duplicateReg(regNumber) {
+        const results = await db.oneOrNone('SELECT id FROM registration_no WHERE regNo = $1', [regNumber]);
+        return results
+    }
+
+    async function errorMessages(noPlate) {
+        if (!noPlate) {
             return "Please enter a registration number"
         }
+        if (await duplicateReg(noPlate) !== null) {
+            return "This registration number already exists"
+        }
     }
 
-    function duplicateReg(regNumber) {
-        if (storedRegNums.includes(regNumber)) {
-            return true
+
+    async function setRegistration(regNumbers) {
+        let town_id = await db.one('SELECT id from town_key WHERE code=$1',[regNumbers.substring(0,2)])
+        let alreadyExistingReg =  await duplicateReg(regNumbers) 
+
+        console.log(town_id.id + " dsdsdsd "  +  alreadyExistingReg)
+        if (alreadyExistingReg === null) {
+            await db.none('INSERT INTO registration_no(regNo, town_id) values($1, $2)', [regNumbers, town_id.id]);
         }
-        return false
     }
 
-    function setRegistration(regNumbers) {
-        if (duplicateReg(regNumbers) === false) {
-            storedRegNums.push(regNumbers)
-        }
-        else {
-            return false;
-        }
-
-    }
-
-    function getRegistration() {
+    async function getRegistration() {
+        let storedRegNums = await db.manyOrNone('SELECT * from registration_no')
+        console.log(storedRegNums + " ppppppppppppppp")
         return storedRegNums
+
+    }
+
+    async function reseted() {
+        await db.none('DELETE FROM registration_no');
+     
+
     }
 
     return {
@@ -71,7 +60,8 @@ module.exports = function Registration(list) {
         setRegistration,
         getRegistration,
         errorMessages,
-        filterRegistration
+        // filterRegistration,
+        reseted
 
     }
 }
