@@ -15,7 +15,7 @@ font-family: sans-serif;
 }
 
 .container .box{
-    /* background-color: #000; */
+    box-shadow: 50px;
     background-image: url('gray.webp');
     position: relative;
     width: calc(800px - 30px);
@@ -56,11 +56,9 @@ h1{
 .cy{
     color: black;
     background: gray;
-    border-radius: 10rem;
-    /* width: 100px; */
-    /* text-align: center; */
-    /* justify-content: center; */
-    /* margin-bottom: 30px; */
+    border-radius: 10px;
+    margin-top: 5px;
+   
     margin-left: 12px;
     padding: 5px;
 }
@@ -75,17 +73,29 @@ li {
     color: red;
     text-align: center;
     padding-bottom: 1em;
+    font-size: larger;
+}
+
+.errorReset{
+    color: green;
+    text-align: center;
+    padding-bottom: 1em;
+    font-size: larger;
 }
 
 .reset{
     text-align: center;
-    padding-top: 6em;
+    padding-top: 3em;
 }
 
 .set{
     font-size: medium;
-    background-color: red;
+    background-color: green;
     border-radius: 10px;
+}
+
+.submitbtn{
+    text-align: center;
 }
 
 @media screen and (max-width: 800px) {

@@ -6,7 +6,7 @@ const session = require('express-session');
 const app = express();
 
 const registers = require('./registration.ff');
-
+const routes = require('./routes/routes')
 const pgp = require('pg-promise')();
 
 let useSSL = false;
@@ -25,7 +25,9 @@ const config = {
 }
 
 const db = pgp(config);
+
 const reggy = registers(db);
+const reggyRoutes = routes(reggy);
 
 app.engine('handlebars', exphbs.engine({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
@@ -42,36 +44,13 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(flash());
 
-app.get('/', async function (req, res) {
-     var  regList = await reggy.getRegistration()
-     console.log(regList.regNo + " fdfdfdfd")
-    res.render('index', {
-        regList
-    })
-})
+app.get('/', reggyRoutes.home)
 
-app.post('/numberPlates', async function (req, res) {
-    let motorPlate = req.body.regNo
-    console.log(motorPlate)
-    if (motorPlate) {
+app.post('/reg_numbers', reggyRoutes.submit)
 
-        await reggy.setRegistration(motorPlate)
-        // console.log(await reggy.getRegistration(motorPlate))
-    } else {
-        req.flash('error', await reggy.errorMessages(motorPlate))
-    }
-res.redirect('/')
-})
+app.post('/filter', reggyRoutes.filter);
 
-app.get('/reset', async function (req, res) {
-    await reggy.reseted();
-    // console.log("-------------");
-
-    req.flash('error', 'You have just reseted Everything')
-
-    res.redirect('/')
-}
-);
+app.get('/reset', reggyRoutes.reset);
 
 // let http = require("http");
 const PORT = process.env.PORT || 3017;

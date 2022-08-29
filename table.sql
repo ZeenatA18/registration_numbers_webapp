@@ -14,4 +14,5 @@ CREATE TABLE registration_no(
 insert into town_key (towns,code) values('Cape Town','CA');
 insert into town_key (towns,code) values('Bellville','CY');
 insert into town_key (towns,code) values('Paarl','CJ');
+
 insert into town_key (towns,code) values('All','CA, CY, CJ');
