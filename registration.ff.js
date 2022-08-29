@@ -12,15 +12,6 @@ module.exports = function Registration(db) {
         return results
     }
 
-    // async function duplicateMessages(noPlate) {
-    //     let duplicate = await duplicateReg(noPlate)
-        
-    //     if (duplicate !== null) {
-    //         return 
-    //     }
-        
-    // }
-
     async function setRegistration(regNumbers) {
         console.log(regNumbers)
         let town_id = await db.one('SELECT id from town_key WHERE code=$1',[regNumbers.substring(0,2)])
