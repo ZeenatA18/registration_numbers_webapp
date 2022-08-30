@@ -10,15 +10,18 @@ console.log(reggy)
 
     async function submit(req, res) {
         let motorPlate = req.body.regNo.toUpperCase().trim()
-        let regex = /[A-Z]{2,3}\s[0-9]{3}(\-|\s)?[0-9]{3}/;
+        let regex = /[A-Z]{2}\s[0-9]{3}(\-|\s)?[0-9]{3}/;
 
         if (!motorPlate) {
             req.flash('error', "Please enter a registration number")
-        } else if (regex.test(motorPlate) === false) {
+        } 
+        else if (regex.test(motorPlate) === false) {
             req.flash('error', "Invalid registration number please try again")
-        } else if (await reggy.duplicateReg(motorPlate) !== null) {
+        } 
+        else if (await reggy.duplicateReg(motorPlate) !== null) {
             req.flash('error', "This registration number already exists")
-        } else if (regex.test(motorPlate) === true) {
+        }
+        else if (regex.test(motorPlate) === true) {
             console.log('no')
             await reggy.setRegistration(motorPlate)
         }

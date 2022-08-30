@@ -1,10 +1,10 @@
 module.exports = function Registration(db) {
 
-   async function filterRegistration(areaReg) {
-      
-        let town_id = await db.one('SELECT id from town_key WHERE code=$1',[areaReg])
-     let filtered =  await db.manyOrNone('SELECT regNo,town_id FROM registration_no WHERE town_id=$1',[town_id.id])
-    return filtered
+    async function filterRegistration(areaReg) {
+
+        let town_id = await db.one('SELECT id from town_key WHERE code=$1', [areaReg])
+        let filtered = await db.manyOrNone('SELECT regNo,town_id FROM registration_no WHERE town_id=$1', [town_id.id])
+        return filtered
     }
 
     async function duplicateReg(regNumber) {
@@ -13,18 +13,18 @@ module.exports = function Registration(db) {
     }
 
     async function setRegistration(regNumbers) {
-        console.log(regNumbers)
-        let town_id = await db.one('SELECT id from town_key WHERE code=$1',[regNumbers.substring(0,2)])
-        let alreadyExistingReg =  await duplicateReg(regNumbers) 
+        // console.log(regNumbers)
+        let town_id = await db.one('SELECT id from town_key WHERE code=$1', [regNumbers.substring(0, 2)])
+        let alreadyExistingReg = await duplicateReg(regNumbers)
 
-         if (alreadyExistingReg === null) {
+        if (alreadyExistingReg === null) {
             await db.none('INSERT INTO registration_no(regNo, town_id) values($1, $2)', [regNumbers, town_id.id]);
         }
     }
 
     async function getRegistration() {
         let storedRegNums = await db.manyOrNone('SELECT * from registration_no')
-        
+
         return storedRegNums
 
     }

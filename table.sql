@@ -1,5 +1,5 @@
 CREATE TABLE town_key(
-    id SERIAL NOT NULL PRIMARY,
+    id SERIAL NOT NULL PRIMARY KEY,
     towns VARCHAR(10) NOT NULL,
     code VARCHAR(10) NOT NULL
 );
@@ -14,5 +14,4 @@ CREATE TABLE registration_no(
 insert into town_key (towns,code) values('Cape Town','CA');
 insert into town_key (towns,code) values('Bellville','CY');
 insert into town_key (towns,code) values('Paarl','CJ');
-
 insert into town_key (towns,code) values('All','CA, CY, CJ');

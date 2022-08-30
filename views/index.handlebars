@@ -30,16 +30,20 @@
             </form>
 
             <form action="filter" method="post">
+
                 <div class="reg">
                     <input type="radio" class="radio" name="all" value="CA, CY, CJ"> Show all
                     <input type="radio" class="radio" name="town" value="CY"> Bellville
                     <input type="radio" class="radio" name="town" value="CJ"> Paarl
                     <input type="radio" class="radio" name="town" value="CA"> Cape Town
                 </div>
+
                 <div class="submitbtn">
-                <button type="submit" value="RESET" class="sapo">Submit</button>
+                    <button type="submit" value="RESET" class="sapo">Submit</button>
                 </div>
+
             </form>
+            
 
             <div class="regNumbers">
                 {{#each regList}}
@@ -51,7 +55,7 @@
 
 
             <div class="reset">
-                <a href="/reset"> <button type="submit" value="RESET" class="set">RESET</button> </a> 
+                <a href="/reset"> <button type="submit" value="RESET" class="set">RESET</button> </a>
             </div>
 
 
