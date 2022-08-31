@@ -98,6 +98,11 @@ li {
     text-align: center;
 }
 
+.examples{
+    text-align: center;
+    color: green;
+}
+
 @media screen and (max-width: 800px) {
     
    .container .box{
