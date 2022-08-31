@@ -19,17 +19,6 @@ describe("Filter Registration Numbers", function () {
         console.log(all)
     });
 
-    it("Should be able to add a registration", async function () {
-        const register = registration(db)
-
-        await register.setRegistration('CA 123 345')
-
-        const all = await register.getRegistration()
-
-        assert.equal([{ "regno": "CA 123 345", "town_id": 1 }], all);
-
-    })
-
     it("Should return all registration numbers for 'Cape Town'", async function () {
         const register = registration(db)
 
@@ -69,8 +58,6 @@ describe("Filter Registration Numbers", function () {
     it("Should return all registration numbers for 'ALL'", async function () {
         const register = registration(db)
 
-        // await register.setRegistration('CA 123-345')
-        // await register.setRegistration('CY 123 345')
         const all = await register.getRegistration()
 
         assert.deepEqual([], all);
