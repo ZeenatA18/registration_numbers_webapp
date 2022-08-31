@@ -1,5 +1,6 @@
 module.exports = function routesRegistration(reggy) {
-console.log(reggy)
+// console.log(reggy)
+
     async function home(req, res) {
         var regList = await reggy.getRegistration()
 
