@@ -11,10 +11,9 @@ module.exports = function routesRegistration(reggy) {
 
     async function submit(req, res) {
         let motorPlate = req.body.regNo.toUpperCase().trim()
-        let regex = /[A-Z]{2}\s[0-9]{3}(\-|\s)?[0-9]{3}/;
-        let townCode = motorPlate.substring(0, 2)
-        let getAll = await reggy.getRegistration()
-
+        let regex = /[CA|CY|CJ]{2}\s[0-9]{3}(\-|\s)?[0-9]{3}/;
+        // let townCode = motorPlate.substring(0, 2)
+    
         // (CA|CY|CL|CF)
 
         if (!motorPlate) {
@@ -25,9 +24,6 @@ module.exports = function routesRegistration(reggy) {
         }
         else if (await reggy.duplicateReg(motorPlate) !== null) {
             req.flash('error', "This registration number already exists")
-        }
-        else if(getAll.includes(townCode) === false){
-            req.flash('error', "Invalid registration")
         }
         else if (regex.test(motorPlate) === true) {
             console.log('no')
@@ -41,21 +37,26 @@ module.exports = function routesRegistration(reggy) {
         let town = req.body.town
         let all = req.body.all
         let townCode = await reggy.filterRegistration(town)
-
+        // let getAll = await reggy.getRegistration(all)
+        // let regex = /[CA|CY|CJ]{2}\s[0-9]{3}(\-|\s)?[0-9]{3}/;
 
         if (townCode.length == 0) {
             req.flash('error', "There is no data on this town")
-            // console.log( req.flash('error', "There is no data on this town"))
         }
-        // else{
-        //     ///start filtering if theres a plate 
-        // }
-
-        if (town) {
+        else if(town){
+            //start filtering if theres a plate 
             var filtering = await reggy.filterRegistration(town)
-        } else  {
+        }
+        else if (all){
             var filtering = await reggy.getRegistration(all)
         }
+
+        // if (town) {
+        //     var filtering = await reggy.filterRegistration(town)
+        // }
+        // if(all) {
+        //     var filtering = await reggy.getRegistration(all)
+        // }
 
         res.render('index', {
             regList: filtering,
