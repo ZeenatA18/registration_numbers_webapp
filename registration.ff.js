@@ -1,10 +1,19 @@
 module.exports = function Registration(db) {
 
     async function filterRegistration(areaReg) {
-
         let town_id = await db.one('SELECT id from town_key WHERE code=$1', [areaReg])
-        let filtered = await db.manyOrNone('SELECT regNo,town_id FROM registration_no WHERE town_id=$1', [town_id.id])
-        return filtered
+
+
+
+        if (areaReg == 'CA' || areaReg == 'CY' || areaReg == 'CJ') {
+            let filtered = await db.manyOrNone('SELECT regNo,town_id FROM registration_no WHERE town_id=$1', [town_id.id])
+            return filtered
+        }
+        //  else if (areaReg == 'All') {
+        //     let storedRegNums = await getRegistration()
+        //     console.log(storedRegNums)
+        //     return storedRegNums
+        // }
     }
 
     async function duplicateReg(regNumber) {
@@ -25,8 +34,8 @@ module.exports = function Registration(db) {
     async function getRegistration() {
         let storedRegNums = await db.manyOrNone('SELECT * from registration_no')
 
+        // console.log(storedRegNums)
         return storedRegNums
-
     }
 
     async function reseted() {

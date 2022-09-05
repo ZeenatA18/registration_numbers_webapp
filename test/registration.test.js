@@ -16,7 +16,7 @@ describe("Registration Numbers", function () {
     beforeEach(async function () {
         await db.none("delete from registration_no");
         let all = await db.any('SELECT * FROM registration_no')
-        console.log(all)
+        // console.log(all)
     });
 
     it("Should return all registration numbers for 'Cape Town'", async function () {
