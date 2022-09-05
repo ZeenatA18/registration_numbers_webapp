@@ -41,7 +41,7 @@ module.exports = function routesRegistration(reggy) {
         if(town == 'All'){
             filtering = await reggy.getRegistration() 
         }
-         if(filtering.length == 0){
+         if(filtering === null){
             req.flash('error', "There is no data on this town")
         }
        
