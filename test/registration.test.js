@@ -11,7 +11,7 @@ const config = {
 const db = pgp(config);
 
 
-describe("Filter Registration Numbers", function () {
+describe("Registration Numbers", function () {
 
     beforeEach(async function () {
         await db.none("delete from registration_no");
@@ -64,7 +64,15 @@ describe("Filter Registration Numbers", function () {
 
     })
 
+    it("Should return nothing when you reseted", async function () {
+        const register = registration(db)
 
+        await register.setRegistration('CJ 145 345');
+        await register.reseted()
+
+        assert.deepEqual([], await register.getRegistration());
+
+    })
 
     after(function () {
         db.$pool.end
