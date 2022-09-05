@@ -1,5 +1,4 @@
 module.exports = function routesRegistration(reggy) {
-    // console.log(reggy)
 
     async function home(req, res) {
         var regList = await reggy.getRegistration()
@@ -12,11 +11,7 @@ module.exports = function routesRegistration(reggy) {
     async function submit(req, res) {
         let motorPlate = req.body.regNo.toUpperCase().trim()
         let regex = /[CA|CY|CJ]{2}\s[0-9]{3}(\-|\s)?[0-9]{3}/;
-        // let townCode = motorPlate.substring(0, 2)
-        // let townCode = await reggy.filterRegistration(town)
-
-        // (CA|CY|CL|CF)
-
+       
         if (!motorPlate) {
             req.flash('error', "Please enter a registration number")
         }
@@ -31,27 +26,14 @@ module.exports = function routesRegistration(reggy) {
             await reggy.setRegistration(motorPlate)
         }
 
-        // if (townCode.length == 0) {
-        //     req.flash('error', "There is no data on this town")
-        // }
-
         res.redirect('/')
     }
 
     async function filter(req, res) {
         let town = req.body.town
-      
-        // console.log(town)
-        // let townCode = await reggy.filterRegistration(town)
-        
+    
         var filtering 
 
-        // if (townCode.length == 0) {
-        //     req.flash('error', "There is no data on this town")
-        // }
-        // else {
-        //     filtering = await reggy.filterRegistration(town)
-        // }
         if (town == 'CA' || town == 'CY' || town == 'CJ' ) {
             filtering = await reggy.filterRegistration(town)
        }
@@ -63,14 +45,6 @@ module.exports = function routesRegistration(reggy) {
             req.flash('error', "There is no data on this town")
         }
        
-// var filtering 
-
-      
-        // if(town == 'All') {
-        //      filtering = await reggy.getRegistration() 
-        // // console.log(filtering + 'anything')
-        // }
-
         res.render('index', {
             regList: filtering
         })
