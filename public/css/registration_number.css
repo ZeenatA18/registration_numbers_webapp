@@ -85,7 +85,7 @@ li {
 
 .reset{
     text-align: center;
-    padding-top: 3em;
+    padding-top: 2em;
 }
 
 .set{
@@ -101,6 +101,10 @@ li {
 .examples{
     text-align: center;
     color: green;
+}
+
+.regNumbers .regs{
+    text-align: center;
 }
 
 @media screen and (max-width: 800px) {

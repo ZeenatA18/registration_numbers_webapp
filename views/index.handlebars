@@ -14,6 +14,13 @@
 
         <div class="box">
 
+            <script>
+                setTimeout(function () {
+                    if(document.querySelector(".errorReset")) document.querySelector(".errorReset").innerHTML = "";
+                    if(document.querySelector(".errorMsg")) document.querySelector(".errorMsg").innerHTML = "";
+                }, 5000);
+            </script>
+
             <h1>Registration Number</h1>
 
             {{#if messages.error}}<div class="errorMsg">{{messages.error}}</div>{{/if}}
@@ -31,9 +38,9 @@
 
             <form action="filter" method="post">
 
-<div class="examples">
-  <b>  eg =>    CA 123 456 , CJ 123-456 , CY 123456
-</div>
+                <div class="examples">
+                    <b> eg => CA 123 456 , CJ 123-456 , CY 123456
+                </div>
 
                 <div class="reg">
                     <input type="radio" class="radio" name="town" value="All"> Show all
@@ -47,7 +54,7 @@
                 </div>
 
             </form>
-            
+
 
             <div class="regNumbers">
                 {{#each regList}}
@@ -56,14 +63,14 @@
 
                 {{/each}}
                 {{#unless regList}}
-                    <h2>No registration number yet</h2>
+                <h2 class="regs">No registration numbers 🤷‍♀️</h2>
                 {{/unless}}
             </div>
 
 
-            <div class="reset">
-                <a href="/reset"> <button type="submit" value="RESET" class="set">RESET</button> </a>
-            </div>
+            <form action="/reset" method="get" class="reset">
+                <button type="submit" value="RESET" class="set">RESET</button>
+            </form>
 
 
         </div>

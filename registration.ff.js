@@ -33,7 +33,7 @@ module.exports = function Registration(db) {
     }
 
     async function reseted() {
-        await db.none('DELETE FROM registration_no');
+        await db.none('truncate registration_no');
     }
 
     return {
