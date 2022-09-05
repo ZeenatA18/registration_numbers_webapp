@@ -42,7 +42,7 @@ module.exports = function routesRegistration(reggy) {
         let town = req.body.town
       
         // console.log(town)
-        let townCode = await reggy.filterRegistration(town)
+        // let townCode = await reggy.filterRegistration(town)
         
         var filtering 
 
@@ -52,20 +52,20 @@ module.exports = function routesRegistration(reggy) {
         // else {
         //     filtering = await reggy.filterRegistration(town)
         // }
-       
+        if (town == 'CA' || town == 'CY' || town == 'CJ' ) {
+            filtering = await reggy.filterRegistration(town)
+       }
+
         if(town == 'All'){
             filtering = await reggy.getRegistration() 
         }
-         if(townCode.length == 0){
+         if(filtering.length == 0){
             req.flash('error', "There is no data on this town")
         }
        
 // var filtering 
 
-        // if (town == 'CA' || town == 'CY' || town == 'CJ' ) {
-        //      filtering = await reggy.filterRegistration(town)
-        // }
-
+      
         // if(town == 'All') {
         //      filtering = await reggy.getRegistration() 
         // // console.log(filtering + 'anything')
