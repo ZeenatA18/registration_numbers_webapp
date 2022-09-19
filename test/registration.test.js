@@ -55,15 +55,7 @@ describe("Registration Numbers", function () {
 
     })
 
-    it("Should return all registration numbers for 'ALL'", async function () {
-        const register = registration(db)
-
-        const all = await register.getRegistration()
-
-        assert.deepEqual([], all);
-
-    })
-
+  
     it("Should return nothing when you reseted", async function () {
         const register = registration(db)
 
