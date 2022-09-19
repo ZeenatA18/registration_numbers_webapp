@@ -65,6 +65,15 @@ describe("Registration Numbers", function () {
         assert.deepEqual([{ "regno": "CJ 123 349", "town_id": 3 }, { "regno": "CJ 144 375", "town_id": 3 }, { "regno": "CJ 144 365", "town_id": 3 }, { "regno": "CJ 148 345", "town_id": 3 }, { "regno": "CJ 145 345", "town_id": 3 }], await register.filterRegistration('CJ'));
 
     })
+    
+     it("Should return no registration numbers if there are no registration added 'ALL'", async function () {
+        const register = registration(db)
+
+        const all = await register.getRegistration()
+
+        assert.deepEqual([], all);
+
+    })
 
   
     it("Should return nothing when you reseted", async function () {
