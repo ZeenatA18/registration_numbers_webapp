@@ -1,7 +1,7 @@
 {
   "name": "registration_no",
   "version": "1.0.0",
-  "description": "",
+  "description": "[![Node.js CI](https://github.com/ZeenatA18/registration_numbers_webapp/actions/workflows/node.js.yml/badge.svg)](https://github.com/ZeenatA18/registration_numbers_webapp/actions/workflows/node.js.yml)",
   "main": "registration.ff.js",
   "directories": {
     "test": "test"
@@ -23,5 +23,13 @@
     "heroku": "^7.60.2",
     "mocha": "^10.0.0",
     "pg-promise": "^10.11.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZeenatA18/registration_numbers_webapp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ZeenatA18/registration_numbers_webapp/issues"
+  },
+  "homepage": "https://github.com/ZeenatA18/registration_numbers_webapp#readme"
 }

@@ -40,6 +40,17 @@ describe("Registration Numbers", function () {
 
     })
 
+    it("Should return all registration numbers for 'Bellville22'", async function () {
+        const register = registration(db)
+
+        await register.setRegistration('CA 123 345')
+        await register.setRegistration('CY 122 345')
+        await register.setRegistration('CY 122 345')
+        assert.equal(null, await register.duplicateReg());
+
+    })
+
+
     it("Should return all registration numbers for 'Paarl'", async function () {
         const register = registration(db)
 

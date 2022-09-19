@@ -12,6 +12,7 @@ module.exports = function Registration(db) {
 
     async function duplicateReg(regNumber) {
         const results = await db.oneOrNone('SELECT id FROM registration_no WHERE regNo = $1', [regNumber]);
+        
         return results
     }
 
